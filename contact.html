@@ -31,5 +31,16 @@
     <footer>
         <p>&copy; 2024 Ritesh Rana. All rights reserved.</p>
     </footer>
+    <script>
+        // Add active class to the current page's link
+        const currentLocation = location.href;
+        const menuItem = document.querySelectorAll('nav ul li a');
+        const menuLength = menuItem.length;
+        for (let i = 0; i < menuLength; i++) {
+            if (menuItem[i].href === currentLocation) {
+                menuItem[i].className = "active";
+            }
+        }
+    </script>
 </body>
 </html>
