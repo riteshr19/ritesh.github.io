@@ -1,6 +1,18 @@
 /* Import Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+/* CSS Variables for theming */
+:root {
+    --primary-color: #2c3e50;
+    --secondary-color: #4ca1af;
+    --accent-color: #e74c3c;
+    --text-color: #333;
+    --background-color: #f4f4f9;
+    --card-background: #fff;
+    --card-shadow: rgba(0, 0, 0, 0.1);
+    --card-hover-shadow: rgba(0, 0, 0, 0.2);
+}
+
 /* Custom cursor */
 body {
     cursor: url('https://example.com/custom-cursor.png'), auto; /* Replace with your custom cursor URL */
@@ -13,24 +25,24 @@ body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 /* Gradient background for header and footer */
 header {
-    background: linear-gradient(45deg, #2c3e50, #4ca1af);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     color: #fff;
     padding: 10px 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--card-shadow);
 }
 
 footer {
-    background: linear-gradient(45deg, #2c3e50, #4ca1af);
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
     color: #fff;
     text-align: center;
     padding: 10px 0;
@@ -38,7 +50,7 @@ footer {
     width: 100%;
     bottom: 0;
     z-index: 1000;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 -2px 4px var(--card-shadow);
 }
 
 nav ul {
@@ -62,7 +74,7 @@ nav ul li a {
     padding: 10px 15px;
     border-radius: 4px;
     transition: background-color 0.3s, color 0.3s, transform 0.3s;
-    background-color: #e74c3c; /* Red color for buttons */
+    background-color: var(--accent-color); /* Red color for buttons */
     width: 150px; /* Fixed width */
     height: 40px; /* Fixed height */
     display: flex;
@@ -87,26 +99,24 @@ main {
     margin-bottom: 40px; /* Adjust based on footer height */
     flex: 1;
     overflow-y: auto;
-    background: linear-gradient(45deg, #f4f4f9, #e0e0e0);
+    background: linear-gradient(45deg, var(--background-color), #e0e0e0);
     background-attachment: fixed; /* Parallax effect */
 }
 
 .cards-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+    justify-content: center;
 }
 
 .card {
     border: 1px solid #ccc;
     border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 4px var(--card-shadow);
     margin: 20px;
     padding: 20px;
-    max-width: 300px;
-    text-align: center;
-    background-color: #fff;
+    background-color: var(--card-background);
     transition: transform 0.3s, box-shadow 0.3s;
     position: relative;
     overflow: hidden;
@@ -114,12 +124,12 @@ main {
 
 .card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--card-hover-shadow);
 }
 
 .card h2 {
     margin-top: 0;
-    color: #2c3e50;
+    color: var(--primary-color);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
 }
 
@@ -135,14 +145,14 @@ main {
 }
 
 .card a {
-    color: #2c3e50;
+    color: var(--primary-color);
     text-decoration: none;
     font-weight: 700;
     transition: color 0.3s;
 }
 
 .card a:hover {
-    color: #e74c3c;
+    color: var(--accent-color);
 }
 
 /* Custom shape for cards */
@@ -162,6 +172,27 @@ main {
     transform: scale(1.5);
 }
 
+/* Accessibility enhancements */
+.high-contrast {
+    background-color: #000;
+    color: #fff;
+}
+
+.text-large {
+    font-size: 1.5em;
+}
+
+/* Print styles */
+@media print {
+    header, footer {
+        display: none;
+    }
+    main {
+        margin: 0;
+        padding: 0;
+    }
+}
+
 /* Responsive design */
 @media (max-width: 768px) {
     nav ul {
@@ -169,11 +200,54 @@ main {
     }
 
     .cards-container {
-        flex-direction: column;
-        align-items: center;
+        grid-template-columns: 1fr;
     }
 
     .card {
         max-width: 90%;
     }
+}
+
+/* Keyframe animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(-100%);
+    }
+    to {
+        transform: translateX(0);
+    }
+}
+
+/* Apply animations */
+.card {
+    animation: fadeIn 1s ease-in-out;
+}
+
+nav ul li a {
+    animation: slideIn 0.5s ease-in-out;
+}
+
+/* Micro-interactions */
+button, input[type="submit"] {
+    background-color: var(--accent-color);
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+button:hover, input[type="submit"]:hover {
+    background-color: #c0392b;
+    transform: scale(1.05);
 }
