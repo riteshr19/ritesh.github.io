@@ -13,11 +13,6 @@
     --card-hover-shadow: rgba(0, 0, 0, 0.2);
 }
 
-/* Custom cursor */
-body {
-    cursor: url('<a target="_blank" href="https://icons8.com/icon/CYgFsQyxgTod/pizza">Pizza</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>'), auto; /* Replace with your custom cursor URL */
-}
-
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -27,6 +22,7 @@ body {
     height: 100vh;
     background-color: var(--background-color);
     color: var(--text-color);
+    cursor: url('cursor/pizza_cursor.png'), auto; /* Replace with your custom cursor URL */
 }
 
 /* Gradient background for header and footer */
